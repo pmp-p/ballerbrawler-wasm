@@ -3,7 +3,7 @@ import os
 pygame.init()
 pygame.mixer.init() 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-print(current_dir)
+print
 #Misc. Variables---------------------------------
 showdebug=-1
 redball_thrown=0
@@ -188,22 +188,17 @@ while prestart:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP] and event.type == pygame.KEYDOWN:
             b2skin=b2skin+1
-            print(b2skin)
         if keys[pygame.K_w] and event.type == pygame.KEYDOWN:
             b1skin=b1skin+1
-            print(b1skin)
         if keys[pygame.K_DOWN] and event.type == pygame.KEYDOWN:
             b2skin=b2skin-1
-            print(b2skin)
         if keys[pygame.K_s] and event.type == pygame.KEYDOWN:
             b1skin=b1skin-1
-            print(b1skin)
         
     
     #Blit Ballers
     skincheckballer1()
     skincheckballer2()
-    print(baller1)
     screen.blit(baller2, baller2_rect)
     screen.blit(baller1, baller1_rect)
     pygame.display.update()
@@ -318,22 +313,19 @@ while running:
     if redball_rect.x > width-120:
         redball_thrown=0
     screen.blit(redball, redball_rect)
-    if redball_rect.left < baller2_rect.right:
-        if redball_rect.right > baller2_rect.left:
-            if redball_rect.top < baller2_rect.bottom:
-                if redball_rect.bottom > baller2_rect.top:
-                    bonk.play()
-                    redball_rect.x=10000
-                    if redball_thrown==1:
-                        blueballer_health-=1
-                    redball_thrown=0
-                    if blueballer_health==0:
-                        redheart1=pygame.image.load(os.path.join(current_dir, "Images", "redheartdead.png"))
-                        redheart2=pygame.image.load(os.path.join(current_dir, "Images", "redheartdead.png"))
-                        redheart3=pygame.image.load(os.path.join(current_dir, "Images", "redheartdead.png"))
-                        type("1st Baller Wins")
-                        pygame.time.wait(2000)
-                        running=False
+    if redball_rect.left < baller2_rect.right and redball_rect.right > baller2_rect.left and redball_rect.top < baller2_rect.bottom and redball_rect.bottom > baller2_rect.top:
+        bonk.play()
+        redball_rect.x=10000
+        if redball_thrown==1:
+            blueballer_health-=1
+        redball_thrown=0
+        if blueballer_health==0:
+            redheart1=pygame.image.load(os.path.join(current_dir, "Images", "redheartdead.png"))
+            redheart2=pygame.image.load(os.path.join(current_dir, "Images", "redheartdead.png"))
+            redheart3=pygame.image.load(os.path.join(current_dir, "Images", "redheartdead.png"))
+            type("1st Baller Wins")
+            pygame.time.wait(2000)
+            running=False
     
 #blueballs
     skincheckblueball()
@@ -349,22 +341,19 @@ while running:
     if blueball_rect.x <20:
         blueball_thrown=0
     screen.blit(blueball, blueball_rect)
-    if blueball_rect.left < baller1_rect.right:
-        if blueball_rect.right > baller1_rect.left:
-            if blueball_rect.top < baller1_rect.bottom:
-                if blueball_rect.bottom > baller1_rect.top:
-                    bonk.play()
-                    blueball_rect.x=10000
-                    if blueball_thrown==1:    
-                        redballer_health-=1
-                    blueball_thrown=0
-                    if redballer_health==0:
-                        blueheart3=pygame.image.load(os.path.join(current_dir, "Images", "blueheartdead.png"))
-                        blueheart2=pygame.image.load(os.path.join(current_dir, "Images", "blueheartdead.png"))
-                        blueheart1=pygame.image.load(os.path.join(current_dir, "Images", "blueheartdead.png"))
-                        type("2nd Baller Wins")
-                        pygame.time.wait(2000)
-                        running=False
+    if blueball_rect.left < baller1_rect.right and blueball_rect.right > baller1_rect.left and blueball_rect.top < baller1_rect.bottom and blueball_rect.bottom > baller1_rect.top:
+        bonk.play()
+        blueball_rect.x=10000
+        if blueball_thrown==1:    
+            redballer_health-=1
+        blueball_thrown=0
+        if redballer_health==0:
+            blueheart3=pygame.image.load(os.path.join(current_dir, "Images", "blueheartdead.png"))
+            blueheart2=pygame.image.load(os.path.join(current_dir, "Images", "blueheartdead.png"))
+            blueheart1=pygame.image.load(os.path.join(current_dir, "Images", "blueheartdead.png"))
+            type("2nd Baller Wins")
+            pygame.time.wait(2000)
+            running=False
 
 #redhearts
     if blueballer_health==2:
